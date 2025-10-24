@@ -16,11 +16,27 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from .views import *
 
-from my_dds_service.views import AllListsView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
 
     path('all_lists/', AllListsView.as_view(), name='all_lists'),
+
+    path('status/add/', TransactionStatusCreateView.as_view(), name='transaction_status_create'),
+    path('status/<int:pk>/edit/', TransactionStatusUpdateView.as_view(), name='transaction_status_update'),
+    path('status/<int:pk>/delete/', TransactionStatusDeleteView.as_view(), name='transaction_status_delete'),
+
+    path('type/add/', TransactionTypeCreateView.as_view(), name='transaction_type_create'),
+    path('type/<int:pk>/edit/', TransactionTypeUpdateView.as_view(), name='transaction_type_update'),
+    path('type/<int:pk>/delete/', TransactionTypeDeleteView.as_view(), name='transaction_type_delete'),
+
+    path('category/add/', CategoryCreateView.as_view(), name='category_create'),
+    path('category/<int:pk>/edit/', CategoryUpdateView.as_view(), name='category_update'),
+    path('category/<int:pk>/delete/', CategoryDeleteView.as_view(), name='category_delete'),
+
+    path('subcategory/add/', SubcategoryCreateView.as_view(), name='subcategory_create'),
+    path('subcategory/<int:pk>/edit/', SubcategoryUpdateView.as_view(), name='subcategory_update'),
+    path('subcategory/<int:pk>/delete/', SubcategoryDeleteView.as_view(), name='subcategory_delete'),
 ]

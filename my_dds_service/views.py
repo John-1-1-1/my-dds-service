@@ -110,7 +110,7 @@ class AllListsView(TemplateView):
             'create_url': 'category_create',
             'update_url_name': 'category_update',
             'delete_url_name': 'category_delete',
-            'display_fields': simple_fields,
+            'display_fields': ['name', 'type.name'],
         }
 
         context['subcategory_table'] = {

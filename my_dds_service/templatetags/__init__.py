@@ -1,1 +1,1 @@
-from . import app_tags
+from . import app_tags, custom_filters
