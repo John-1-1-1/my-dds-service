@@ -4,16 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5cd9f408-23e9-47f6-a341-f3ba22e92149" name="Changes" comment="Добавление, редактирование и изменение справочиков">
-      <change afterPath="$PROJECT_DIR$/my_dds_service/filters.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my_dds_service/forms.py" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my_dds_service/templates/crud_transaction_form.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/my_dds_service/templates/transaction_list.html" afterDir="false" />
+    <list default="true" id="5cd9f408-23e9-47f6-a341-f3ba22e92149" name="Changes" comment="Добавление списка транзакций и формы редактирования">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/db.sqlite3" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_dds_service/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_dds_service/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_dds_service/templates/includes/sidebar.html" beforeDir="false" afterPath="$PROJECT_DIR$/my_dds_service/templates/includes/sidebar.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_dds_service/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_dds_service/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_dds_service/static/modal/js/addUpdRecord.js" beforeDir="false" afterPath="$PROJECT_DIR$/my_dds_service/static/modal/js/addUpdRecord.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/my_dds_service/templates/includes/model_table.html" beforeDir="false" afterPath="$PROJECT_DIR$/my_dds_service/templates/includes/model_table.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/my_dds_service/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_dds_service/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -106,7 +100,15 @@
       <option name="project" value="LOCAL" />
       <updated>1761313300279</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Добавление списка транзакций и формы редактирования">
+      <option name="closed" value="true" />
+      <created>1761316093833</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1761316093833</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -125,6 +127,7 @@
     <MESSAGE value="Добавление моделей" />
     <MESSAGE value="Добавление bootstrap" />
     <MESSAGE value="Добавление, редактирование и изменение справочиков" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавление, редактирование и изменение справочиков" />
+    <MESSAGE value="Добавление списка транзакций и формы редактирования" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавление списка транзакций и формы редактирования" />
   </component>
 </project>

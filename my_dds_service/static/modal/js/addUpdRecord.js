@@ -14,7 +14,7 @@
             const isCreate = button.getAttribute('data-is-create') === 'true';
 
             if (isCreate) {
-                modalTitle.textContent = `Создание: ${editUrl.split('/')[1] || 'Объекта'}`;
+                modalTitle.textContent = `Создание: ${objectName}`;
             } else {
                 modalTitle.textContent = `Редактирование: ${objectName}`;
                 currentRowToUpdate = button.closest('tr');

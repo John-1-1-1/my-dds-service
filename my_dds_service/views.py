@@ -89,6 +89,7 @@ class AllListsView(TemplateView):
 
         context['status_table'] = {
             'title': "Статусы транзакций",
+            'create_form_name': "Статусов транзакций",
             'object_list': TransactionStatus.objects.all(),
             'headers': simple_headers,
             'create_url': 'transaction_status_create',
@@ -99,6 +100,7 @@ class AllListsView(TemplateView):
 
         context['type_table'] = {
             'title': "Типы транзакций",
+            'create_form_name': "Типов транзакций",
             'object_list': TransactionType.objects.all(),
             'headers': simple_headers,
             'create_url': 'transaction_type_create',
@@ -109,6 +111,7 @@ class AllListsView(TemplateView):
 
         context['category_table'] = {
             'title': "Категории",
+            'create_form_name': "Категории",
             'object_list': Category.objects.all(),
             'headers': ['Название', "Родительский тип"],
             'create_url': 'category_create',
@@ -119,6 +122,7 @@ class AllListsView(TemplateView):
 
         context['subcategory_table'] = {
             'title': "Подкатегории",
+            'create_form_name': "Подкатегории",
             'object_list': Subcategory.objects.all().select_related('category'),
             'headers': ['Название', 'Родительская категория'],
             'create_url': 'subcategory_create',
