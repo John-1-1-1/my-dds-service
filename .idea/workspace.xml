@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5cd9f408-23e9-47f6-a341-f3ba22e92149" name="Changes" comment="Init">
-      <change afterPath="$PROJECT_DIR$/my_dds_service/admin.py" afterDir="false" />
+    <list default="true" id="5cd9f408-23e9-47f6-a341-f3ba22e92149" name="Changes" comment="Добавление моделей">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_dds_service/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_dds_service/settings.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,11 +68,20 @@
       <option name="project" value="LOCAL" />
       <updated>1761288788106</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Добавление моделей">
+      <option name="closed" value="true" />
+      <created>1761291718761</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1761291718761</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Init" />
-    <option name="LAST_COMMIT_MESSAGE" value="Init" />
+    <MESSAGE value="Добавление моделей" />
+    <option name="LAST_COMMIT_MESSAGE" value="Добавление моделей" />
   </component>
 </project>
