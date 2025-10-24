@@ -4,11 +4,16 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="5cd9f408-23e9-47f6-a341-f3ba22e92149" name="Changes" comment="Добавление списка транзакций и формы редактирования">
+    <list default="true" id="5cd9f408-23e9-47f6-a341-f3ba22e92149" name="Changes" comment="Исправление наименований 2">
+      <change afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/git_content/img.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/git_content/img_1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/git_content/img_2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/git_content/img_3.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/git_content/img_4.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/git_content/img_5.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/git_content/img_6.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_dds_service/static/modal/js/addUpdRecord.js" beforeDir="false" afterPath="$PROJECT_DIR$/my_dds_service/static/modal/js/addUpdRecord.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_dds_service/templates/includes/model_table.html" beforeDir="false" afterPath="$PROJECT_DIR$/my_dds_service/templates/includes/model_table.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/my_dds_service/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/my_dds_service/views.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,7 +113,23 @@
       <option name="project" value="LOCAL" />
       <updated>1761316093833</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Исправление наименований">
+      <option name="closed" value="true" />
+      <created>1761317027505</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1761317027505</updated>
+    </task>
+    <task id="LOCAL-00007" summary="Исправление наименований 2">
+      <option name="closed" value="true" />
+      <created>1761317677774</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1761317677774</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -128,6 +149,8 @@
     <MESSAGE value="Добавление bootstrap" />
     <MESSAGE value="Добавление, редактирование и изменение справочиков" />
     <MESSAGE value="Добавление списка транзакций и формы редактирования" />
-    <option name="LAST_COMMIT_MESSAGE" value="Добавление списка транзакций и формы редактирования" />
+    <MESSAGE value="Исправление наименований" />
+    <MESSAGE value="Исправление наименований 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Исправление наименований 2" />
   </component>
 </project>
