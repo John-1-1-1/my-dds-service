@@ -17,6 +17,10 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
+from my_dds_service.views import AllListsView
+
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    path('all_lists/', AllListsView.as_view(), name='all_lists'),
 ]

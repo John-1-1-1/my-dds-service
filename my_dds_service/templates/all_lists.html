@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block content %}
+<div class="container">
+    <h1>Управление справочниками</h1>
+
+    <div class="row mb-4">
+
+        <div class="col-md-6">
+            {% include 'includes/model_table.html' with data=status_table %}
+        </div>
+
+        <div class="col-md-6">
+            {% include 'includes/model_table.html' with data=type_table %}
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row">
+
+        <div class="col-md-6">
+            {% include 'includes/model_table.html' with data=category_table %}
+        </div>
+
+        <div class="col-md-6">
+            {% include 'includes/model_table.html' with data=subcategory_table %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}
