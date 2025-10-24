@@ -39,4 +39,13 @@ urlpatterns = [
     path('subcategory/add/', SubcategoryCreateView.as_view(), name='subcategory_create'),
     path('subcategory/<int:pk>/edit/', SubcategoryUpdateView.as_view(), name='subcategory_update'),
     path('subcategory/<int:pk>/delete/', SubcategoryDeleteView.as_view(), name='subcategory_delete'),
+
+    path('transaction/create/', TransactionCreateUpdateView.as_view(), name='transaction_create'),
+    path('transaction/update/<int:pk>/', TransactionCreateUpdateView.as_view(), name='transaction_update'),
+    path('transaction/<int:pk>/delete/', TransactionDeleteView.as_view(), name='transaction_delete'),
+
+    path('ajax/load_categories/', load_categories, name='ajax_load_categories'),
+    path('ajax/load_subcategories/', load_subcategories, name='ajax_load_subcategories'),
+
+    path('', TransactionListView.as_view(), name='transaction_list'),
 ]

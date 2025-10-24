@@ -1,0 +1,262 @@
+{% extends "base.html" %}
+
+{% load app_tags %}
+
+{% block content %}
+<h2>
+    {% if object %}
+        Редактирование {{ model_verbose_name }}: {{ object }}
+    {% else %}
+        Создание {{ model_verbose_name }}
+    {% endif %}
+</h2>
+
+<form method="post" id="transactionForm">
+    {% csrf_token %}
+
+    {% if form.non_field_errors %}
+        <div class="alert alert-danger">{{ form.non_field_errors }}</div>
+    {% endif %}
+
+    <div class="row">
+
+        <div class="col-md-6">
+
+            {% with field=form.transaction_type %}
+                <div class="mb-3">
+                    <label for="{{ field.id_for_label }}" class="form-label">
+                        {{ field.label }}
+                        {% if field.field.required %}<span class="text-danger">*</span>{% endif %}
+                    </label>
+                    {{ field }}
+                    {% for error in field.errors %}
+                        <div class="alert alert-danger p-2 mt-1">{{ error }}</div>
+                    {% endfor %}
+                    {% if field.help_text %}<div class="form-text">{{ field.help_text }}</div>{% endif %}
+                </div>
+            {% endwith %}
+
+            {% with field=form.category %}
+                <div class="mb-3">
+                    <label for="{{ field.id_for_label }}" class="form-label">
+                        {{ field.label }}
+                        {% if field.field.required %}<span class="text-danger">*</span>{% endif %}
+                    </label>
+                    {{ field }}
+                    {% for error in field.errors %}
+                        <div class="alert alert-danger p-2 mt-1">{{ error }}</div>
+                    {% endfor %}
+                    {% if field.help_text %}<div class="form-text">{{ field.help_text }}</div>{% endif %}
+                </div>
+            {% endwith %}
+
+            {% with field=form.amount %}
+                <div class="mb-3">
+                    <label for="{{ field.id_for_label }}" class="form-label">
+                        {{ field.label }}
+                        {% if field.field.required %}<span class="text-danger">*</span>{% endif %}
+                    </label>
+                    {{ field }}
+                    {% for error in field.errors %}
+                        <div class="alert alert-danger p-2 mt-1">{{ error }}</div>
+                    {% endfor %}
+                    {% if field.help_text %}<div class="form-text">{{ field.help_text }}</div>{% endif %}
+                </div>
+            {% endwith %}
+
+        </div>
+
+        <div class="col-md-6">
+
+            {% with field=form.status %}
+                <div class="mb-3">
+                    <label for="{{ field.id_for_label }}" class="form-label">
+                        {{ field.label }}
+                        {% if field.field.required %}<span class="text-danger">*</span>{% endif %}
+                    </label>
+                    {{ field }}
+                    {% for error in field.errors %}
+                        <div class="alert alert-danger p-2 mt-1">{{ error }}</div>
+                    {% endfor %}
+                    {% if field.help_text %}<div class="form-text">{{ field.help_text }}</div>{% endif %}
+                </div>
+            {% endwith %}
+
+            {% with field=form.subcategory %}
+                <div class="mb-3">
+                    <label for="{{ field.id_for_label }}" class="form-label">
+                        {{ field.label }}
+                        {% if field.field.required and field.name != 'subcategory' %}
+                            <span class="text-danger">*</span>
+                        {% elif field.name == 'subcategory' %}
+                            <span id="subcategory-required-star" class="text-danger d-none">*</span>
+                        {% endif %}
+                    </label>
+                    {{ field }}
+                    {% for error in field.errors %}
+                        <div class="alert alert-danger p-2 mt-1">{{ error }}</div>
+                    {% endfor %}
+                    {% if field.help_text %}<div class="form-text">{{ field.help_text }}</div>{% endif %}
+                </div>
+            {% endwith %}
+
+            {% with field=form.created_at %}
+                {% if field and not field.is_hidden %}
+                    <div class="mb-3">
+                        <label for="{{ field.id_for_label }}" class="form-label">
+                            {{ field.label }}
+                            {% if field.field.required %}<span class="text-danger">*</span>{% endif %}
+                        </label>
+                        {{ field }}
+                        {% for error in field.errors %}
+                            <div class="alert alert-danger p-2 mt-1">{{ error }}</div>
+                        {% endfor %}
+                        {% if field.help_text %}<div class="form-text">{{ field.help_text }}</div>{% endif %}
+                    </div>
+                {% endif %}
+            {% endwith %}
+
+        </div>
+    </div>
+    {% with field=form.comment %}
+        {% if field %}
+            <div class="mb-3">
+                <label for="{{ field.id_for_label }}" class="form-label">
+                    {{ field.label }}
+                    {% if field.field.required %}<span class="text-danger">*</span>{% endif %}
+                </label>
+                {{ field }}
+                {% for error in field.errors %}
+                    <div class="alert alert-danger p-2 mt-1">{{ error }}</div>
+                {% endfor %}
+                {% if field.help_text %}<div class="form-text">{{ field.help_text }}</div>{% endif %}
+            </div>
+        {% endif %}
+    {% endwith %}
+
+
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+    <a href="{% url 'transaction_list' %}" class="btn btn-secondary">Отмена</a>
+</form>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const typeSelect = document.getElementById('id_transaction_type');
+        const categorySelect = document.getElementById('id_category');
+        const subcategorySelect = document.getElementById('id_subcategory');
+        const subcategoryRequiredStar = document.getElementById('subcategory-required-star');
+
+        let initialTypeID = '';
+        let initialCategoryID = '';
+        let initialSubcategoryID = '';
+
+        {% if form.data %}
+            initialTypeID = "{{ form.data|get:'transaction_type'|default:'' }}";
+            initialCategoryID = "{{ form.data|get:'category'|default:'' }}";
+            initialSubcategoryID = "{{ form.data|get:'subcategory'|default:'' }}";
+        {% elif object %}
+            initialTypeID = "{{ object.transaction_type_id|default:'' }}";
+            initialCategoryID = "{{ object.category_id|default:'' }}";
+            initialSubcategoryID = "{{ object.subcategory_id|default:'' }}";
+        {% endif %}
+
+        function clearSubcategories() {
+            subcategorySelect.innerHTML = '<option value="">---------</option>';
+            subcategorySelect.disabled = true;
+            subcategoryRequiredStar.classList.add('d-none');
+            subcategorySelect.removeAttribute('required');
+        }
+
+        function updateSubcategories(initialLoad = false) {
+            const categoryId = categorySelect.value;
+
+            if (!categoryId) {
+                clearSubcategories();
+                return;
+            }
+
+            fetch(`{% url 'ajax_load_subcategories' %}?category_id=${categoryId}`)
+                .then(response => response.json())
+                .then(data => {
+                    let options = '<option value="">---------</option>';
+                    data.forEach(subcategory => {
+                        options += `<option value="${subcategory.id}">${subcategory.name}</option>`;
+                    });
+                    subcategorySelect.innerHTML = options;
+
+                    const hasSubcategories = data.length > 0;
+                    subcategorySelect.disabled = !hasSubcategories;
+
+                    if (hasSubcategories) {
+                        subcategoryRequiredStar.classList.remove('d-none');
+                        subcategorySelect.setAttribute('required', 'required');
+                    } else {
+                         clearSubcategories();
+                    }
+
+                    if (initialLoad) {
+                        if (initialSubcategoryID) {
+                             subcategorySelect.value = initialSubcategoryID;
+                        }
+                    }
+                })
+                .catch(error => {
+                    console.error('Ошибка загрузки подкатегорий:', error);
+                    subcategorySelect.innerHTML = '<option value="">Ошибка загрузки</option>';
+                });
+        }
+
+        function updateCategories(initialLoad = false) {
+            const typeId = typeSelect.value;
+            clearSubcategories();
+
+            if (!typeId) {
+                categorySelect.innerHTML = '<option value="">---------</option>';
+                categorySelect.disabled = true;
+                return;
+            }
+
+            fetch(`{% url 'ajax_load_categories' %}?type_id=${typeId}`)
+                .then(response => response.json())
+                .then(data => {
+                    let options = '<option value="">---------</option>';
+                    data.forEach(category => {
+                        options += `<option value="${category.id}">${category.name}</option>`;
+                    });
+
+                    categorySelect.innerHTML = options;
+                    categorySelect.disabled = false;
+
+                    if (initialLoad) {
+                        if (initialTypeID) {
+                            typeSelect.value = initialTypeID;
+                        }
+
+                        if (initialCategoryID) {
+                            categorySelect.value = initialCategoryID;
+                        }
+                    }
+
+                    updateSubcategories(initialLoad);
+                })
+                .catch(error => {
+                    console.error('Ошибка загрузки категорий:', error);
+                    categorySelect.disabled = true;
+                    categorySelect.innerHTML = '<option value="">Ошибка загрузки</option>';
+                });
+        }
+
+        if (typeSelect && categorySelect && subcategorySelect) {
+            typeSelect.addEventListener('change', () => updateCategories(false));
+            categorySelect.addEventListener('change', () => updateSubcategories(false));
+
+            if (initialTypeID) {
+                 typeSelect.value = initialTypeID;
+            }
+
+            updateCategories(true);
+        }
+    });
+</script>
+
+{% endblock %}

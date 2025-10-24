@@ -1,7 +1,11 @@
+from django.http import JsonResponse
 from django.views.generic import CreateView, UpdateView, DeleteView
 from django.urls import reverse_lazy
+from django_filters.views import FilterView
 
-from .models import TransactionStatus, TransactionType, Category, Subcategory
+from .filters import TransactionFilter
+from .forms import TransactionForm
+from .models import TransactionStatus, TransactionType, Category, Subcategory, Transaction
 
 
 class TransactionStatusCreateView(CreateView):
@@ -124,3 +128,58 @@ class AllListsView(TemplateView):
         }
 
         return context
+
+class TransactionCreateUpdateView(CreateView, UpdateView):
+    model = Transaction
+    form_class = TransactionForm
+    template_name = 'crud_transaction_form.html'
+    success_url = reverse_lazy('transaction_list')
+
+    def get_object(self, queryset=None):
+        if self.kwargs.get('pk'):
+            return super().get_object(queryset)
+        return None
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['model_verbose_name'] = Transaction._meta.verbose_name
+        return context
+
+
+def load_categories(request):
+    """AJAX-представление: возвращает JSON-список категорий для выбранного типа."""
+    type_id = request.GET.get('type_id')
+
+    categories = Category.objects.filter(type_id=type_id).order_by('name')
+
+    data = [{'id': category.pk, 'name': category.name} for category in categories]
+
+    return JsonResponse(data, safe=False)
+
+
+def load_subcategories(request):
+    """AJAX-представление: возвращает список подкатегорий в формате JSON."""
+    category_id = request.GET.get('category_id')
+
+    subcategories = Subcategory.objects.filter(category_id=category_id).order_by('name')
+
+    data = [{'id': subcategory.pk, 'name': subcategory.name} for subcategory in subcategories]
+
+    return JsonResponse(data, safe=False)
+
+class TransactionListView(FilterView):
+    model = Transaction
+    filterset_class = TransactionFilter
+    template_name = 'transaction_list.html'
+    context_object_name = 'transactions'
+    paginate_by = 10
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['model_verbose_name'] = Transaction._meta.verbose_name_plural
+        return context
+
+
+class TransactionDeleteView(DeleteView):
+    model = Transaction
+    success_url = reverse_lazy('transaction_list')

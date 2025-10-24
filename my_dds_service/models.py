@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 class TransactionStatus(models.Model):
     """Модель для статуса записи ДДС (Бизнес, Личное, Налог)."""
@@ -75,3 +76,55 @@ class Subcategory(models.Model):
 
     def __str__(self):
         return f"{self.category.name}: {self.name}"
+
+class Transaction(models.Model):
+    """Основная модель записи о движении денежных средств (ДДС)."""
+    created_at = models.DateTimeField(
+        default=timezone.now,
+        verbose_name="Дата создания записи"
+    )
+
+    status = models.ForeignKey(
+        TransactionStatus,
+        on_delete=models.PROTECT,
+        verbose_name="Статус",
+        null=True,
+        blank=True
+    )
+
+    transaction_type = models.ForeignKey(
+        TransactionType,
+        on_delete=models.PROTECT,
+        verbose_name="Тип"
+    )
+
+    category = models.ForeignKey(
+        Category,
+        on_delete=models.PROTECT,
+        verbose_name="Категория"
+    )
+    subcategory = models.ForeignKey(
+        Subcategory,
+        on_delete=models.PROTECT,
+        verbose_name="Подкатегория"
+    )
+
+    amount = models.DecimalField(
+        max_digits=10,
+        decimal_places=2,
+        verbose_name="Сумма"
+    )
+
+    comment = models.TextField(
+        blank=True,
+        null=True,
+        verbose_name="Комментарий"
+    )
+
+    class Meta:
+        verbose_name = "Транзакция ДДС"
+        verbose_name_plural = "Транзакции ДДС"
+        ordering = ['-created_at']
+
+    def __str__(self):
+        return f"{self.created_at.strftime('%Y-%m-%d')} | {self.transaction_type.name} | {self.amount} р."

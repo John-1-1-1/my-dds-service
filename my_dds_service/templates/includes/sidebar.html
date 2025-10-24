@@ -7,6 +7,24 @@
     <div class="list-group list-group-flush">
 
         <a class="list-group-item list-group-item-action
+            {% if request.resolver_match.url_name == 'transaction_list' %}
+                active
+            {% endif %}"
+           href="{% url 'transaction_list' %}">
+            <i class="me-2"></i>
+            Главная
+        </a>
+
+        <a class="list-group-item list-group-item-action
+            {% if request.resolver_match.url_name == 'transaction_create' %}
+                active
+            {% endif %}"
+           href="{% url 'transaction_create' %}">
+            <i class="me-2"></i>
+            Добавление транзакции
+        </a>
+
+        <a class="list-group-item list-group-item-action
             {% if request.resolver_match.url_name == 'all_lists' %}
                 active
             {% endif %}"
